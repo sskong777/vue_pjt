@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 메서드 핸들러 -->
+    <button v-on:click="alertHello">Button</button>
+    <button @click="alertHello">Button</button>
+    <!-- 기본 동작 방지 -->
+    <form action="" @submit.prevent="alertHello">
+      <button>GoGo</button>
+    </form>
+
+    <!-- 키 별칭을 이용한 키 입력 수식어 -->
+    <input type="text" @keyup.enter="log"> 
+    <!-- cb 함수에서 특수문법 () -->
+    <input type="text" @keyup.enter="log('ssafy')"> 
+    
+    <p>{{ message }}</p>
+    <button @click="changeMessage">change message</button>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      // 값
+      data: {
+        message: 'Hello Vue',
+      },
+      // 행동(함수)
+      methods: {
+        alertHello: function () {
+          alert('hello')
+        },
+        log: function (something) {
+          console.log(something)
+        },
+        changeMessage() {
+          this.message = 'New message!!!'
+        },
+      }
+
+    })
+  </script>
+</body>
+</html>

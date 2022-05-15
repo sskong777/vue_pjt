@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <div>
+      <input type="text" v-model="message">
+    </div>
+    {{ other }}
+    <p>Original: <strong>{{ message }}</strong></p>
+    <p>Reverse by Method: <strong>{{ reverseMessage() }}</strong></p>
+    <p>Reverse by Computed: <strong>{{ reversedMessage }}</strong></p>
+    
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        sessionid: 'asdf',
+        message: 'Original',
+        other: 'asdf'
+      },
+      // data를 바꾸는 로직 위주! (setter 함수들)
+      methods: {
+        reverseMessage() {
+          console.log('method!!')
+          return this.message.split('').reverse().join('')
+        },
+      },
+      // data를 통한 값을 얻음! (getter 함수들)
+      computed: {
+        // (data에 의존하는)계산된 값
+        reversedMessage() {
+          console.log('computed!!')
+          return this.message.split('').reverse().join('')
+        },
+        isLoggedIn() {
+          return this.sessionid ? true : false
+        }
+      }
+    })
+
+  </script>
+</body>
+</html>
